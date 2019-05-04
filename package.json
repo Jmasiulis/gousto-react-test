@@ -15,6 +15,7 @@
     "react-scripts": "^2.1.5"
   },
   "dependencies": {
+    "@material-ui/core": "^3.9.3",
     "connected-react-router": "^4.5.0",
     "cross-fetch": "^3.0.1",
     "react": "16.8.3",
@@ -32,5 +33,6 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "proxy": "https://api.gousto.co.uk/"
 }
