@@ -8,7 +8,7 @@ export const SETTING_CATEGORY_DONE = 'SETTING_CATEGORY_DONE';
 export const SETTING_PRODUCT_DONE = 'SETTING_PRODUCT_DONE';
 export const SEARCHING_PRODUCTS_DONE = 'SEARCHING_PRODUCTS_DONE';
 
-export function getInitialData() {
+export function getInitialData(categoryId) {
   return async (dispatch) => {
     const products = await fetch(PRODUCTS_API_URL)
     if (products.status >= 400) {
@@ -19,6 +19,13 @@ export function getInitialData() {
       type: FETCHING_PRODUCTS_DONE,
       payload: await products.json()
     });
+
+    if (categoryId) {
+      dispatch({
+        type: SETTING_CATEGORY_DONE,
+        payload: { categoryId }
+      });
+    }
   }
 }
 

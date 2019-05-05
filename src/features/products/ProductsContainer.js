@@ -1,15 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import { getInitialData, selectCategory, selectProduct, searchProducts } from './actions';
 import Categories from './Categories';
 
 class ProductsContainer extends Component {
   componentDidMount() {
-    this.props.dispatch(getInitialData());
+    const { dispatch, match } = this.props;
+
+    dispatch(getInitialData(match.params.categoryId));
+  }
+
+  componentDidUpdate(prevProps) {
+    const { dispatch, match } = this.props;
+    if (match.params.categoryId !== prevProps.match.params.categoryId) {
+      dispatch(selectCategory(match.params.categoryId));
+    }
   }
 
   handleCategoryClick = categoryId => {
-    this.props.dispatch(selectCategory(categoryId));
+    const { history, dispatch } = this.props;
+
+    history.push(`/category/${categoryId}`);
   }
 
   handleProductClick = productId => {
@@ -47,4 +59,4 @@ const mapStateToProps = state => ({
   selectedProductIds: state.products.selectedProductIds
 });
 
-export default connect(mapStateToProps)(ProductsContainer);
+export default withRouter(connect(mapStateToProps)(ProductsContainer));
