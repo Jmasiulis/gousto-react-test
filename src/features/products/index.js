@@ -5,5 +5,5 @@ import ProductsContainer from './ProductsContainer';
 export {
   actions,
   ProductsContainer,
-  reducers
+  reducers as products
 };

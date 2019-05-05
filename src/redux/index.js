@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import home from './home'
+import { products } from '../features/products'
 
 export default combineReducers({
-  home
+  products
 })
