@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { getInitialData, selectCategory, selectProduct, searchProducts } from './actions';
@@ -16,12 +17,6 @@ class ProductsContainer extends Component {
     if (match.params.categoryId !== prevProps.match.params.categoryId) {
       dispatch(selectCategory(match.params.categoryId));
     }
-  }
-
-  handleCategoryClick = categoryId => {
-    const { history, dispatch } = this.props;
-
-    history.push(`/category/${categoryId}`);
   }
 
   handleProductClick = productId => {
@@ -42,7 +37,6 @@ class ProductsContainer extends Component {
     return (
       <Categories
         productsByCategory={productsByCategory}
-        onCategoryClick={this.handleCategoryClick}
         onProductClick={this.handleProductClick}
         onSearch={this.handleSearch}
         selectedCategoryId={selectedCategoryId}
@@ -58,5 +52,19 @@ const mapStateToProps = state => ({
   shownProducts: state.products.shownProducts,
   selectedProductIds: state.products.selectedProductIds
 });
+
+ProductsContainer.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  productsByCategory: PropTypes.object,
+  onProductClick: PropTypes.func,
+  onSearch: PropTypes.func,
+  selectedCategoryId: PropTypes.string,
+  selectedProductIds: PropTypes.arrayOf(PropTypes.string),
+  shownProducts: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string,
+    title: PropTypes.string,
+    description: PropTypes.string
+  }))
+};
 
 export default withRouter(connect(mapStateToProps)(ProductsContainer));

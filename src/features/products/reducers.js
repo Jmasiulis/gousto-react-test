@@ -1,5 +1,10 @@
 import update from 'immutability-helper';
-import { FETCHING_PRODUCTS_DONE, SETTING_CATEGORY_DONE, SETTING_PRODUCT_DONE, SEARCHING_PRODUCTS_DONE } from './actions';
+import {
+  FETCHING_PRODUCTS_DONE,
+  SETTING_CATEGORY_DONE,
+  SETTING_PRODUCT_DONE,
+  SEARCHING_PRODUCTS_DONE
+} from './actions';
 
 
 const initialState = {

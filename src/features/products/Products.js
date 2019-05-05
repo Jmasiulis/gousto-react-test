@@ -1,19 +1,13 @@
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types'
-import './Categories.css';
 
 export default function Products({ products, onProductClick, selectedProductIds }) {
-
-  if (!products) {
-    return null;
-  }
-
   const listItems =
     products.map((item) =>
       <li key={item.title}>
-        <a className="product-item-link" onClick={() => onProductClick(item.id)}>
+        <button className="product-item" onClick={() => onProductClick(item.id)}>
           {item.title}
-        </a>
+        </button>
         {selectedProductIds.indexOf(item.id) !== -1 && <p className="product-description">
           {item.description}
         </p>}
@@ -27,3 +21,13 @@ export default function Products({ products, onProductClick, selectedProductIds 
     </Fragment>
   );
 }
+
+Products.propTypes = {
+  onProductClick: PropTypes.func.isRequired,
+  selectedProductIds: PropTypes.arrayOf(PropTypes.string),
+  products: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string,
+    title: PropTypes.string,
+    description: PropTypes.string
+  })).isRequired
+};

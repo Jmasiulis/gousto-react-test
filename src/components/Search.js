@@ -8,3 +8,7 @@ export default function Search({ onSearch }) {
     </Fragment>
   );
 }
+
+Search.propTypes = {
+  onSearch: PropTypes.func.isRequired
+};

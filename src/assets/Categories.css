@@ -1,0 +1,25 @@
+.category-list {
+  display: inline-block;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.category-item {
+  float: left;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.category-item-link {
+  color: black;
+  display: block;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}
+
+.selected-category {
+  font-weight: 700;
+  text-decoration: underline;
+}

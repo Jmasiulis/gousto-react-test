@@ -2,10 +2,12 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Route,
-  Switch,
-  Redirect
+  Switch
 } from 'react-router-dom';
 import { ProductsContainer } from './features/products';
+import './assets/Categories.css';
+import './assets/Products.css';
+import './assets/Search.css';
 
 export default function App() {
 
