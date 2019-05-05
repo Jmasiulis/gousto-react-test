@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getInitialData, selectCategory, selectProduct } from './actions';
+import { getInitialData, selectCategory, selectProduct, searchProducts } from './actions';
 import Categories from './Categories';
 
 class ProductsContainer extends Component {
@@ -16,6 +16,10 @@ class ProductsContainer extends Component {
     this.props.dispatch(selectProduct(productId));
   }
 
+  handleSearch = e => {
+    this.props.dispatch(searchProducts(e.target.value));
+  }
+
   render() {
     const { productsByCategory, selectedCategoryId, shownProducts, selectedProductIds } = this.props;
 
@@ -28,6 +32,7 @@ class ProductsContainer extends Component {
         productsByCategory={productsByCategory}
         onCategoryClick={this.handleCategoryClick}
         onProductClick={this.handleProductClick}
+        onSearch={this.handleSearch}
         selectedCategoryId={selectedCategoryId}
         selectedProductIds={selectedProductIds}
         shownProducts={shownProducts}/>

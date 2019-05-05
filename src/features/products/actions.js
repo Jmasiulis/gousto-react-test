@@ -6,6 +6,7 @@ const PRODUCTS_API_URL = '/products/v2.0/products?includes[]=categories&image_si
 export const FETCHING_PRODUCTS_DONE = 'FETCHING_PRODUCTS_DONE';
 export const SETTING_CATEGORY_DONE = 'SETTING_CATEGORY_DONE';
 export const SETTING_PRODUCT_DONE = 'SETTING_PRODUCT_DONE';
+export const SEARCHING_PRODUCTS_DONE = 'SEARCHING_PRODUCTS_DONE';
 
 export function getInitialData() {
   return async (dispatch) => {
@@ -35,6 +36,15 @@ export function selectProduct(productId) {
     dispatch({
       type: SETTING_PRODUCT_DONE,
       payload: { productId }
+    });
+  }
+}
+
+export function searchProducts(searchValue) {
+  return (dispatch) => {
+    dispatch({
+      type: SEARCHING_PRODUCTS_DONE,
+      payload: { searchValue }
     });
   }
 }

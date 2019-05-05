@@ -1,5 +1,5 @@
 import update from 'immutability-helper';
-import { FETCHING_PRODUCTS_DONE, SETTING_CATEGORY_DONE, SETTING_PRODUCT_DONE } from './actions';
+import { FETCHING_PRODUCTS_DONE, SETTING_CATEGORY_DONE, SETTING_PRODUCT_DONE, SEARCHING_PRODUCTS_DONE } from './actions';
 
 
 const initialState = {
@@ -27,11 +27,24 @@ export default function (state = initialState, { type, payload }) {
 
     case SETTING_PRODUCT_DONE:
       const productIndex = getProductIndexInSelectedProducts(state.selectedProductIds, payload.productId);
+
       return update(state, {
         selectedProductIds:
           productIndex !== -1 ?
           { $splice: [[productIndex, 1]] } :
           { $push: [payload.productId] }
+      });
+
+    case SEARCHING_PRODUCTS_DONE:
+      return update(state, {
+        shownProducts:{
+          $set: payload.searchValue ?
+            searchProducts(
+              state.productsByCategory[state.selectedCategoryId].products,
+              payload.searchValue.toLowerCase()
+            ) :
+            state.productsByCategory[state.selectedCategoryId].products
+        }
       });
 
     default:
@@ -57,4 +70,16 @@ function insertCategories(payload) {
 
 function getProductIndexInSelectedProducts(selectedProductIds, productId) {
   return selectedProductIds.indexOf(productId);
+}
+
+function searchProducts(shownProducts, searchValue) {
+  return shownProducts.reduce((acc, item) => {
+    const title = item.title.toLowerCase();
+    const description = item.description.toLowerCase();
+    if (title.includes(searchValue) || description.includes(searchValue)) {
+      acc.push(item);
+    }
+
+    return acc;
+  }, [])
 }
