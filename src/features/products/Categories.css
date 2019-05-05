@@ -1,18 +1,39 @@
-ul {
+.category-list {
+  display: inline-block;
   list-style-type: none;
   margin: 0;
   padding: 0;
-  overflow: hidden;
 }
 
-li {
+.category-item {
   float: left;
   font-weight: 600;
+  font-size: 18px;
 }
 
-li a {
+.category-item-link {
+  cursor: pointer;
   display: block;
   text-align: center;
   padding: 16px;
   text-decoration: none;
+}
+
+.product-list {
+  display: inline-block;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.product-item-link {
+  cursor: pointer;
+  display: block;
+  padding: 4px 16px;
+  text-decoration: none;
+}
+
+.selected-category {
+  font-weight: 700;
+  text-decoration: underline;
 }

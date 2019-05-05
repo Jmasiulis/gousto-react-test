@@ -1,9 +1,11 @@
 import update from 'immutability-helper';
-import { FETCHING_PRODUCTS_DONE} from './actions';
+import { FETCHING_PRODUCTS_DONE, SETTING_CATEGORY_DONE } from './actions';
 
 
 const initialState = {
   productsByCategory: null,
+  selectedCategoryId: null,
+  shownProducts: null
 };
 
 export default function (state = initialState, { type, payload }) {
@@ -11,6 +13,12 @@ export default function (state = initialState, { type, payload }) {
     case FETCHING_PRODUCTS_DONE:
       return update(state, {
         productsByCategory: { $set: insertCategories(payload.data) }
+      });
+
+    case SETTING_CATEGORY_DONE:
+      return update(state, {
+        selectedCategoryId: { $set: payload },
+        shownProducts: { $set: state.productsByCategory[payload] && state.productsByCategory[payload].products}
       });
 
     default:
