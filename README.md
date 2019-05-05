@@ -6,6 +6,7 @@ If anything is unclear or you have any questions, feel free to get back to us. W
 
 ## How to use:
 
+
 ### Prerequisites:
 
 * `node js` >= 8.12
@@ -18,6 +19,29 @@ If anything is unclear or you have any questions, feel free to get back to us. W
 * `yarn start-windows` - starting the app in dev mode on windows
 * `yarn build` - build the production artifacts
 * `yarn test` - running the tests
+
+## Application structure
+
+Current functionality is divided into features. Since we only have one feature now, it's called products. There you can find a Container, which contains no logic and components inside, which has everything else.
+
+Styling was moved to assets folder to not pollute the folders.
+
+Search was moved to components as there's a great chance there will be more places where this can be reused. The component itself is very little and very easy to re-use.
+
+## A list of missing functional requirements
+
+None. I picked 2,5 hours time limit and I did it all. I missed some of the non-functional requirements, though.
+
+## Possible improvements/ functionality
+Added tests for store. It would be very great to add testing there, which would take some time to prepare mocked data, but it would confirm it's working there.
+
+Added some prop-types, but didn't have time anymore to add some initial types when some of them doesn't exist.
+
+App could be more responsive.
+
+Reducer could be improved even further, as different dispatch calls now feels a bit cluttered there.
+
+A better handling of API calls, when it fails especially.
 
 ## How to deliver your assessment
 
