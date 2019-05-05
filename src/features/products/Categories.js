@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Products from './Products';
 import './Categories.css';
 
-export default function Categories({productsByCategory, onCategoryClick, selectedCategoryId, shownProducts}) {
+export default function Categories({productsByCategory, onCategoryClick, selectedCategoryId, shownProducts, onProductClick, selectedProductIds}) {
   const listItems =
     Object.keys(productsByCategory).map((key) =>
       <li 
@@ -22,7 +22,7 @@ export default function Categories({productsByCategory, onCategoryClick, selecte
       <ul className="category-list">
         {listItems}
       </ul>
-      <Products products={shownProducts} />
+      <Products products={shownProducts} onProductClick={onProductClick} selectedProductIds={selectedProductIds}/>
     </Fragment>
   );
 }

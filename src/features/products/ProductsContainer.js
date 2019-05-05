@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getInitialData, selectCategory } from './actions';
+import { getInitialData, selectCategory, selectProduct } from './actions';
 import Categories from './Categories';
 
 class ProductsContainer extends Component {
@@ -12,8 +12,12 @@ class ProductsContainer extends Component {
     this.props.dispatch(selectCategory(categoryId));
   }
 
+  handleProductClick = productId => {
+    this.props.dispatch(selectProduct(productId));
+  }
+
   render() {
-    const { productsByCategory, selectedCategoryId, shownProducts } = this.props;
+    const { productsByCategory, selectedCategoryId, shownProducts, selectedProductIds } = this.props;
 
     if (!productsByCategory) {
       return null;
@@ -23,7 +27,9 @@ class ProductsContainer extends Component {
       <Categories
         productsByCategory={productsByCategory}
         onCategoryClick={this.handleCategoryClick}
+        onProductClick={this.handleProductClick}
         selectedCategoryId={selectedCategoryId}
+        selectedProductIds={selectedProductIds}
         shownProducts={shownProducts}/>
     );
   }
@@ -33,6 +39,7 @@ const mapStateToProps = state => ({
   productsByCategory: state.products.productsByCategory,
   selectedCategoryId: state.products.selectedCategoryId,
   shownProducts: state.products.shownProducts,
+  selectedProductIds: state.products.selectedProductIds
 });
 
 export default connect(mapStateToProps)(ProductsContainer);

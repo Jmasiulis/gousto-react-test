@@ -20,7 +20,6 @@
 }
 
 .product-list {
-  display: inline-block;
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -29,8 +28,15 @@
 .product-item-link {
   cursor: pointer;
   display: block;
-  padding: 4px 16px;
+  padding: 8px 16px 0px;
   text-decoration: none;
+}
+
+.product-description {
+  font-style: italic;
+  margin: 0;
+  max-width: 50%;
+  padding: 0px 16px 16px;
 }
 
 .selected-category {
