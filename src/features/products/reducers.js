@@ -22,11 +22,15 @@ export default function (state = initialState, { type, payload }) {
       });
 
     case SETTING_CATEGORY_DONE:
+      if (!state.productsByCategory[payload.categoryId]) {
+        return state;
+      }
+
       return update(state, {
         selectedCategoryId: { $set: payload.categoryId },
         selectedProductIds: { $set: [] },
         shownProducts:{
-          $set: state.productsByCategory[payload.categoryId] && state.productsByCategory[payload.categoryId].products
+          $set: state.productsByCategory[payload.categoryId].products
         }
       });
 
@@ -41,6 +45,10 @@ export default function (state = initialState, { type, payload }) {
       });
 
     case SEARCHING_PRODUCTS_DONE:
+      if (!state.productsByCategory[state.selectedCategoryId]) {
+        return state;
+      }
+
       return update(state, {
         shownProducts:{
           $set: payload.searchValue ?

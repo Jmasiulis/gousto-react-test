@@ -1,4 +1,4 @@
-import fetch from 'cross-fetch';
+import 'cross-fetch/polyfill'
 
 const BAD_RESPONSE = 'Bad response from server';
 const PRODUCTS_API_URL = '/products/v2.0/products?includes[]=categories&image_sizes[]=365';
@@ -30,7 +30,7 @@ export function getInitialData(categoryId) {
 }
 
 export function selectCategory(categoryId) {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch({
       type: SETTING_CATEGORY_DONE,
       payload: { categoryId }
